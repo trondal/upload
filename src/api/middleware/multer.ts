@@ -6,10 +6,12 @@ const uploadDir = path.resolve(process.cwd(), 'uploads');
 fs.mkdirSync(uploadDir, { recursive: true });
 
 const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => cb(null, uploadDir),
+  destination: (_req, _file, cb) => {
+    cb(null, uploadDir);
+  },
   filename: (_req, file, cb) => {
     // basic safe-ish filename
-    const ts = Date.now();
+    const ts = String(Date.now());
     const ext = path.extname(file.originalname);
     const base = path
       .basename(file.originalname, ext)

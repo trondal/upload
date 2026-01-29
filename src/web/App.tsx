@@ -15,7 +15,7 @@ function App() {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string>('');
 
-  async function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.SubmitEvent) {
     e.preventDefault();
     setStatus('');
 
@@ -42,7 +42,7 @@ function App() {
     }
 
     setStatus(
-      `Uploaded: ${data.originalName} -> ${data.storedName} (${data.size} bytes, ${data.mimeType})`
+      `Uploaded: ${data.originalName} -> ${data.storedName} (${String(data.size)} bytes, ${data.mimeType})`
     );
   }
 
@@ -53,7 +53,9 @@ function App() {
       <form onSubmit={onSubmit}>
         <input
           type="file"
-          onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+          onChange={(e) => {
+            setFile(e.target.files?.[0] ?? null);
+          }}
         />
         <button type="submit" style={{ marginLeft: 12 }}>
           Upload

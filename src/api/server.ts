@@ -28,5 +28,5 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '../../uploads')));
 
 app.listen(PORT, () => {
-  console.log(`[api] Express listening on http://localhost:${PORT}`);
+  console.log(`[api] Express listening on http://localhost:${String(PORT)}`);
 });
