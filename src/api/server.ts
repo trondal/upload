@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { uploadRouter } from './routes/upload';
+import { uploadRouter } from './routes/upload.js';
 
 const app = express();
 const PORT = Number(process.env.API_PORT ?? 5174);
