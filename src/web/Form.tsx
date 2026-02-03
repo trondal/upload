@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 type UploadResponse =
@@ -14,7 +15,7 @@ type UploadResponse =
 function Form() {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string>('');
-
+  const [uploadPercentage, setUploadPercentage] = useState(0);
   async function onSubmit(e: React.SubmitEvent) {
     e.preventDefault();
     setStatus('');
@@ -27,23 +28,37 @@ function Form() {
     const form = new FormData();
     form.append('file', file);
 
-    const res = await fetch('/api/upload', {
-      method: 'POST',
-      body: form
-    });
+    try {
+      const res = await axios.post<UploadResponse>('/api/upload', form, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total) {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
 
-    const data = (await res.json()) as UploadResponse;
+            setUploadPercentage(percentCompleted);
+          }
+        }
+      });
+      const data = res.data;
 
-    if (!res.ok || !data.ok) {
+      if (!data.ok) {
+        setStatus(
+          `Upload failed: ${'error' in data ? data.error : res.statusText}`
+        );
+        return;
+      }
+
       setStatus(
-        `Upload failed: ${'error' in data ? data.error : res.statusText}`
+        `Uploaded: ${data.originalName} -> ${data.storedName} (${String(data.size)} bytes, ${data.mimeType})`
       );
-      return;
+    } catch (error) {
+      console.error('Upload error:', error);
+      setUploadPercentage(0); // Reset or set to error state
     }
-
-    setStatus(
-      `Uploaded: ${data.originalName} -> ${data.storedName} (${String(data.size)} bytes, ${data.mimeType})`
-    );
   }
 
   return (
@@ -58,7 +73,7 @@ function Form() {
           }}
         />
         <button type="submit" style={{ marginLeft: 12 }}>
-          Upload
+          Upload {uploadPercentage} %
         </button>
       </form>
 
