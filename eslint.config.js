@@ -23,6 +23,9 @@ export default defineConfig([
       },
       ecmaVersion: 2020,
       globals: globals.browser
+    },
+    rules: {
+      '@typescript-eslint/no-misused-promises': 'off'
     }
   }
 ]);

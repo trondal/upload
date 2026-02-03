@@ -11,8 +11,6 @@ type UploadResponse =
     }
   | { ok: false; error: string };
 
-const ACCEPTEDFILES = ['.jpg', '.jpeg'];
-
 function Form() {
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string>('');

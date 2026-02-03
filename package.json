@@ -39,7 +39,9 @@
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
     "@skatteetaten/ds-buttons": "2.6.1",
+    "@skatteetaten/ds-core-designtokens": "2.6.1",
     "@skatteetaten/ds-forms": "2.6.1",
+    "axios": "1.13.4",
     "cors": "2.8.6",
     "express": "5.2.1",
     "multer": "2.0.2",
