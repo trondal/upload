@@ -11,25 +11,26 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prettier": "prettier --check '{api,src}/**/*{js,jsx,ts,tsx,md,html,css,scss}'",
-    "prettier:write": "prettier --write '{api,src}/**/*{js,jsx,ts,tsx,md,html,css,scss}'"
+    "prettier:write": "prettier --write '{api,src}/**/*{js,jsx,ts,tsx,md,html,css,scss}'",
+    "tsc": "npx tsc"
   },
   "devDependencies": {
     "@eslint/js": "9.39.2",
     "@types/cors": "2.8.19",
     "@types/multer": "2.0.0",
-    "@types/node": "25.2.0",
-    "@types/react": "19.2.10",
+    "@types/node": "25.3.2",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.2",
+    "@vitejs/plugin-react": "5.1.4",
     "concurrently": "9.2.1",
     "eslint": "9.39.2",
     "eslint-plugin-react-hooks": "7.0.1",
-    "eslint-plugin-react-refresh": "0.5.0",
+    "eslint-plugin-react-refresh": "0.5.2",
     "globals": "17.3.0",
     "prettier": "3.8.1",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.54.0",
+    "typescript-eslint": "8.56.1",
     "vite": "7.3.1"
   },
   "prettier": {
@@ -38,16 +39,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
-    "@skatteetaten/ds-buttons": "2.6.1",
-    "@skatteetaten/ds-core-designtokens": "2.6.1",
-    "@skatteetaten/ds-forms": "2.6.1",
-    "axios": "1.13.4",
+    "axios": "1.13.5",
     "cors": "2.8.6",
     "express": "5.2.1",
     "multer": "2.0.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-hook-form": "7.71.1",
+    "react-hook-form": "7.71.2",
     "zod": "4.3.6"
   }
 }
